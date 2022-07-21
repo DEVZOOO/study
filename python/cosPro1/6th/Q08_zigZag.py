@@ -1,0 +1,61 @@
+'''
+문제8. 지그재그 수열
+'''
+
+INC = 0
+DEC = 1
+
+def func_a(arr):
+	length = len(arr)
+	ret = [0 for _ in range(length)]
+	ret[0] = 1
+	for i in range(1, length):
+		if arr[i] != arr[i-1]:
+			ret[i] = ret[i-1] + 1
+		else:
+			ret[i] = 2
+	return ret
+
+def func_b(arr):
+	global INC, DEC
+	length = len(arr)
+	ret = [0 for _ in range(length)]
+	ret[0] = -1
+	for i in range(1, length):
+		if arr[i] > arr[i-1]:
+			ret[i] = INC
+		elif arr[i] < arr[i-1]:
+			ret[i] = DEC
+	return ret
+
+def func_c(arr):
+	ret = max(arr)
+	if ret == 2:
+		return 0
+	return ret
+
+'''
+func_a : 
+func_b : 각 원소가 바로 이전 원소 기준 증가/감소 여부 표시
+func_c : 최댓값 반환
+'''
+def solution(S):
+	check = func_b(S)
+	dp = func_a(check)
+	answer = func_c(dp)
+	return answer
+
+S1 = [2, 5, 7, 3, 4, 6, 1, 8, 9]
+ret1 = solution(S1)
+
+print("solution 함수의 반환 값은", ret1, "입니다.")
+
+S2 = [4, 3, 2, 1, 10, 6, 9, 7, 8]
+ret2 = solution(S2)
+
+print("solution 함수의 반환 값은", ret2, "입니다.")
+
+S3 = [1, 2, 3, 4, 5]
+ret3 = solution(S3)
+
+print("solution 함수의 반환 값은", ret3, "입니다.")

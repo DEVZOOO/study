@@ -1,8 +1,8 @@
-# COS Pro 1급 샘플문제
+# COS Pro 1급 샘플문제 풀이
 [문제 보러가기 - YBM IT](https://www.ybmit.com/cos_pro/cos_pro_r_test.jsp)
 
-COS Pro 1급을 공부하며 풀었던 개인적인 샘플문제 풀이입니다.   
-YBM IT에 공개된 샘플 문제입니다.    
+COS Pro python 1급을 공부하며 풀었던 샘플문제 풀이입니다.   
+YBM IT에 공개된 샘플 문제이며, 개인적인 풀이 방법입니다.    
 
 
 ## 자격정보

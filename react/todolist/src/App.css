@@ -41,6 +41,7 @@
 
 .wrapper {
   margin: 20px 50px;
+  width: 400px;
 }
 .wrapper * {
   font-family: 'Arima', '맑은고딕';
@@ -113,4 +114,11 @@
 }
 .btn-del:hover {
   box-shadow: inset 2px 2px 5px #BF8F97, inset -5px -5px 10px #ffc0cb;
+}
+
+@media screen and (max-width: 720px) {
+  .wrapper {
+    margin: auto;
+    width: calc(100% - 50px);
+  }
 }

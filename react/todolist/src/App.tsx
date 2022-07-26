@@ -4,7 +4,7 @@ import TodolistForm from './components/TodolistForm';
 
 function App() {
   return (
-    <div className="wrapper" style={{width: '400px'}}>
+    <div className="wrapper">
       <TodolistForm></TodolistForm>
     </div>
   );

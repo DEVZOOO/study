@@ -10,7 +10,7 @@ def solution(arr, K):
 	
 	# 각 인덱스부터 뽑아서 최솟값 구하기
 	for i in range(arrLen - K) :
-		selectedArr = sortedArr[i:i+4]
+		selectedArr = sortedArr[i:i+K]
 		diff = max(selectedArr) - min(selectedArr)
 		
 		if i == 0 :

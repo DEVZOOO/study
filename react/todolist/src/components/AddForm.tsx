@@ -18,6 +18,13 @@ const AddForm = (props: any) => {
         if (inputRef) {
             const el = inputRef.current;
             const item = el?.value;
+
+            if (item == "") {
+                alert("값을 채워주세요");
+                el?.focus();
+                return;
+            }
+            
             fnAddItem(item);
 
             el && (el.value = "");

@@ -1,13 +1,25 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import TodolistForm from './components/TodolistForm';
+// page
+import Header from "./components/Header";
+import {default as Home} from './pages/Home';
+import {default as Todolist} from './pages/Todolist';
 
 function App() {
-  return (
+  return (<>
+    {/* // header */}
+    <Header></Header>
+
+    {/* // content */}
     <div className="wrapper">
-      <TodolistForm></TodolistForm>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/todolist" element={<Todolist />} />
+        <Route path="/todolist/:menu" element={<Todolist />} />
+      </Routes>
     </div>
-  );
+  </>);
 }
 
 export default App;

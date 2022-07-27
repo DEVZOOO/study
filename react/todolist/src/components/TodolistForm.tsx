@@ -38,14 +38,14 @@ const TodolistForm = (props: any) => {
     };
 
     return (<>
-        <h2 className='title'>TODO List</h2>
+        
         <div>
             <AddForm fnAddItem={fnAddItem}></AddForm>
         </div>
 
         <ul className='todoList'>
         {todoList.length > 0 &&
-            todoList.map( (v, i) => <TodoItem item={v} fnDelItem={fnDelItem}></TodoItem> )
+            todoList.map( (v, i) => <TodoItem key={i} item={v} fnDelItem={fnDelItem}></TodoItem> )
         }
         </ul>
     </>

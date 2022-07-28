@@ -16,7 +16,10 @@ const Todolist = () => {
     }, [nav]);
 
     return (<>
-        <h2 className='title'>TODO List</h2>
+        <h2>Todo List</h2>
+        <ul className="desc">
+            <li>Insert items.</li>
+        </ul>
         <TodolistForm></TodolistForm>
     </>);
 }

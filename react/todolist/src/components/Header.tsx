@@ -28,7 +28,7 @@ const Header = (props: any) => {
             menus.map( (v, i) => {
                 return (
                     <li key={i}>
-                        <Link to={"/" + v.link} className={v.nav === nav ? '' : 'hl-pink'}>
+                        <Link to={"/" + v.link} className={v.nav === nav ? 'active' : 'hl-pink'}>
                             {v.title}
                         </Link>
                     </li>

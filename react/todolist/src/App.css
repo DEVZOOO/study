@@ -47,10 +47,14 @@
   font-family: 'Arima', '맑은고딕';
 }
 
-.title {
-  text-align: center;
-  font-family: 'Mochiy Pop One', 'Consolas';
+.desc {
+  font-size: .8em;
+  padding-left: 20px;
 }
+.desc * {
+  font-family: '맑은고딕';
+}
+
 
 .btn {
   border: none;
@@ -85,6 +89,10 @@
   padding: 0 5px;
   position: relative;
 }
+.gnb li > a.active {
+  background: linear-gradient(to top, transparent 0%, transparent 15%, #ffc0cb 15%, pink 50%, transparent 50%, transparent);
+}
+
 .hl-pink:before {
   content: '';
   width: 100%;
@@ -92,7 +100,8 @@
   top: 0;
   left: 0;
   position: absolute;
-  background: linear-gradient(to top, transparent 0%, transparent 15%, #ffc0cb 15%, pink 50%, transparent 50%, transparent);
+  /* background: linear-gradient(to top, transparent 0%, transparent 15%, #ffc0cb 15%, pink 50%, transparent 50%, transparent); */
+  background: linear-gradient(to top, transparent 20%, #ffc0cb 20%, #ffc0cb 27%, transparent 27%, transparent);
   opacity: .5;
   z-index: 0;
 }

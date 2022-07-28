@@ -16,8 +16,6 @@ const Header = (props: any) => {
         },
     ];
 
-    console.log(props);
-
     return (
     <div className="wrapper">
         <ul className="gnb">

@@ -10,8 +10,8 @@ export enum NAV_MENU {
     TODO_LIST = "todolist",
 }
 
-export const rootSlice = createSlice({
-    name : 'root',
+export const navSlice = createSlice({
+    name : 'nav',
     initialState : {
         menu : NAV_MENU.HOME,
     },
@@ -24,8 +24,8 @@ export const rootSlice = createSlice({
 
 export const {
     changeNav,
-} = rootSlice.actions;
+} = navSlice.actions;
 
-export const getNav = (state: any) => state.root.menu;
+export const getNav = (state: any) => state.nav.menu;
 
-export default rootSlice.reducer;
+export default navSlice.reducer;

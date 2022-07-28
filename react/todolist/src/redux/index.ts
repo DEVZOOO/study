@@ -3,10 +3,10 @@
  */
 
 import { combineReducers } from 'redux';
-import rootReducer from "./nav";
+import navReducer from "./nav";
 
 const reducers = combineReducers({
-    root: rootReducer,
+    nav: navReducer,
 });
 
 export default reducers;

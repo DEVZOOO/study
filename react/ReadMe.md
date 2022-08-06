@@ -35,12 +35,12 @@ react 프로젝트를 생성하고, 필요한 모듈들을 설치하여 개발�
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ index.html|(3)|
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ manifest.json|   |
 |&nbsp;&nbsp;&nbsp;├ src|(4)|
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ App.css
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ App.js
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ index.css
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ index.js
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ logo.svg
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ serviceWorker.js
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ App.css| |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ App.js| |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ index.css| |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ index.js| |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├ logo.svg| |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ serviceWorker.js| |
 
 1. `package.json` : app에 사용되는 모듈 및 app 관련 정보
 2. `public` : app에 사용되는 정적 파일들(image, css, js, ...)

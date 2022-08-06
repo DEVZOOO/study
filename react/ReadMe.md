@@ -46,3 +46,11 @@ react 프로젝트를 생성하고, 필요한 모듈들을 설치하여 개발�
 2. `public` : app에 사용되는 정적 파일들(image, css, js, ...)
 3. `index.html` : SPA(Single Page Application)의 특성에 따라 app의 각 코드들을 이 html에 그린다.
 4. `src` : app의 모든 소스   
+
+## Todo List
+Redux 적용한 Todo List App     
+[구경하기](https://devzooo.github.io/)
+
+### Redux 적용
+navigation 현재 메뉴 탭 redux로 저장      
+현재 메뉴 하이라이트처리한다.

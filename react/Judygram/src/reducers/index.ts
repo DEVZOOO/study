@@ -10,9 +10,9 @@ import navReducer from "./nav";
 //     nav: navReducer,
 // });
 
-const reducers = (state, action: any) => {
+const reducers = (state, action) => {
     if (action.type === HYDRATE) {
-        return { ...action.payload };
+        return { ...state, ...action.payload };
     } else {
         const combinedReducer = combineReducers({
             nav: navReducer,
@@ -22,3 +22,5 @@ const reducers = (state, action: any) => {
 };
 
 export default reducers;
+
+export type RootState = ReturnType<typeof reducers>;

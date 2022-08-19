@@ -8,6 +8,8 @@ import Footer from "@/components/footer";
 
 import { COMMON } from "@/const/const.enum";
 
+import styles from "./Layout.module.scss";
+
 const Layout = ({
     children,
     title = ""
@@ -17,11 +19,12 @@ const Layout = ({
         <Head>
             <title>{appTitle}</title>
         </Head>
-        <Header />
-            
-        {children}
-
-        <Footer />
+        
+        <div className={styles.wrapper}>
+            <Header />
+            {children}
+            <Footer />
+        </div>
     </>);
 };
 

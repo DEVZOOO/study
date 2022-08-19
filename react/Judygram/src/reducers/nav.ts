@@ -24,13 +24,24 @@ import { NAV_MENU } from "@/const/const.enum";
 
 // export default navSlice.reducer;
 
-export const changeNav = (menu: NAV_MENU) => ({payload: menu});
-const initValue = NAV_MENU.HOME;
+const initValue = {
+    type : "init",
+    menu : NAV_MENU.HOME,
+};
+
+export const changeNav = (menu: NAV_MENU) => {
+    return { type : "change", payload : menu, }
+};
 
 const reducer = (state = initValue, action) => {
-    return {
-        menu : action.payload ?? state,
-    };
+    switch (action.type) {
+        default :
+            return {
+                ...state,
+                menu : action.payload,
+            };
+    }
+    
 };
 
 export default reducer;

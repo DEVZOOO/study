@@ -9,8 +9,9 @@ import { NAV_MENU } from "@/const/const.enum";
 
 const About = () => {
 
-    // const dispatch = useDispatch();
-    // dispatch(changeNav(NAV_MENU.ABOUT));
+    const dispatch = useDispatch();
+
+    // dispatch( changeNav(NAV_MENU.ABOUT) );
 
     return (
         <h2>About!</h2>

@@ -5,6 +5,7 @@
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
+import { RootState } from "@/reducers/index";
 import { NAV_MENU } from '@/const/const.enum';
 
 // css
@@ -12,14 +13,14 @@ import styles from './Header.module.scss';
 
 const Header = () => {
 
-    const { menu } = useSelector( (state: any) => state.nav );
+    const { menu } = useSelector( (state: RootState) => state.nav );
 
     console.log(menu);
 
     const menus = Object.keys(NAV_MENU);
 
     return (<>
-        <div>
+        <div className={styles.gnb}>
             <ul className={styles.nav}>
                 {/* <li>
                     <Link href="/">

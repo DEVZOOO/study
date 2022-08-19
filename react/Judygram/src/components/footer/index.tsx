@@ -4,7 +4,11 @@
 
 const Footer = () => {
     return (<>
+    <ul>
+        <li>
         Judygram
+        </li>
+    </ul>
     </>);
 };
 

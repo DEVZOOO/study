@@ -1,6 +1,7 @@
 $nav-height : 60px; // botto nav 메뉴 사이즈(정사각형)
 $nav-diff : 5px;    // bottom nav 여백
 
+$nav-icon-filter : invert(100%) sepia(100%) saturate(0%) hue-rotate(125deg) brightness(103%) contrast(103%);
 .gnb {
     max-width: inherit;
     width: 100%;
@@ -14,8 +15,14 @@ $nav-diff : 5px;    // bottom nav 여백
         justify-content: space-around;
         align-items: center;
     
-        & .active {
-            text-decoration : underline;
+        & .active:after {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 2px;
+            background-color: #fff;
+            bottom: 10px;
+            border-radius: 1px;
         }
     
         & li {
@@ -23,8 +30,13 @@ $nav-diff : 5px;    // bottom nav 여백
             align-items: center;
             justify-content: space-around;
             text-transform: capitalize;    // 첫문자 대문자
+
         }
-       
+        &Icon {
+            width: 30px;
+            filter: $nav-icon-filter
+        }
+
     }
     
 }

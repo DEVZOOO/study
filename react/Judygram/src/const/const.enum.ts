@@ -12,5 +12,7 @@ export enum NAV_MENU {
     HOME = "home",
     ABOUT = 'about',
     FEED = 'feed',
+    SEARCH = 'search',
     ACCOUNT = 'account',
+    AUTH = 'auth',
 }

@@ -14,6 +14,7 @@ import styles from './Gnb.module.scss';
 interface IMenu {
     menu: NAV_MENU;
     url?: string;
+    img?: string;
 }
 
 const Gnb = () => {
@@ -24,9 +25,12 @@ const Gnb = () => {
         {
             menu : NAV_MENU.HOME,
             url : "/",
+            img : "home.svg",
         },
         {
-            menu : NAV_MENU.FEED,
+            menu : NAV_MENU.SEARCH,
+            url : "/search/Search",
+            img : "search.svg",
         },
         {
             menu : NAV_MENU.ABOUT,
@@ -34,6 +38,8 @@ const Gnb = () => {
         },
         {
             menu : NAV_MENU.ACCOUNT,
+            url : "/account",
+            img : "user.png"
         },
     ];
 
@@ -44,7 +50,10 @@ const Gnb = () => {
                 menus.map( (v, i) => (
                     <li key={i} className={v.menu === menu ? styles.active : ''}>
                         <Link href={v.url ?? "/"}>
-                            <a>{v.menu}</a>
+                            {v.img
+                                ? <img src={`/img/${v.img}`} alt={v.menu} title={v.menu} className={styles.navIcon} />
+                                : <a>{v.menu}</a>
+                            }
                         </Link>
                     </li>
                 ))

@@ -38,6 +38,6 @@ const makeStore = () => configureStore({
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
-export type ApThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
 
 export const wrapper = createWrapper<AppStore>(makeStore);

@@ -2,6 +2,8 @@
  * Home(Feed)
  */
 import { wrapper } from "@/reducers";
+import { useSelector } from "react-redux";
+import { getAuth } from "@/reducers/store/auth";
 import { setNavMenu } from "@/reducers/store/nav";
 import { NAV_MENU } from '@/const';
  
@@ -11,6 +13,9 @@ import Story from "@/components/story";
 import styles from "./Feed.module.scss";
 
 const Feed = () => {
+    const auth = useSelector(getAuth);
+    console.log(auth);
+    
     const stories = [
         {
             user : "Judy",

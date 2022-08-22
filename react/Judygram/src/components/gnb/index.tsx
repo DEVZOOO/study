@@ -23,7 +23,7 @@ const Gnb = () => {
 
     const menus: IMenu[] = [
         {
-            menu : NAV_MENU.HOME,
+            menu : NAV_MENU.FEED,
             url : "/",
             img : "home.svg",
         },

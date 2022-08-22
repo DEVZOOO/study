@@ -11,4 +11,6 @@ export enum COMMON {
 export enum NAV_MENU {
     HOME = "home",
     ABOUT = 'about',
+    FEED = 'feed',
+    ACCOUNT = 'account',
 }

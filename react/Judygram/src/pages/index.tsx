@@ -2,33 +2,25 @@
  * Index
  */
 
+import { wrapper } from "@/reducers";
+import { setNavMenu } from "@/reducers/store/nav";
+import { NAV_MENU } from '@/const';
 
-import wrapper from "@/reducers/store";
-
-import Layout from "@/components/layout";
-import { getData } from "@/pages/api/hello";
-
-export const Main = ({index}) => {
-    // fetch("/api/hello")
-    //     .then((res) => {
-    //         return res.json();
-    //     })
-    //     .then((json) => {
-    //         setTitle(json.title);
-    //     });
-
-    return (<>
+export const Main = (props) => {
+    return (
         <h2>Main</h2>
-    </>);
+    );
 }
 
-export default Main;
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+    // console.log('ctx', ctx);
 
-// export async function getStaticProps() {
-//     const result = getData();
-//     return {
-//         props : {
-//             index : result,
-//         }
-//     }
-// }
+    store.dispatch(setNavMenu(NAV_MENU.HOME));
+    return {
+        props : {
+            // resolvedUrl : ctx.resolvedUrl,
+        }
+    };
+});
+
+export default Main;

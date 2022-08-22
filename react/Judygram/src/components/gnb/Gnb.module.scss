@@ -1,0 +1,31 @@
+$nav-height : 60px; // botto nav 메뉴 사이즈(정사각형)
+$nav-diff : 5px;    // bottom nav 여백
+
+.gnb {
+    max-width: inherit;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+
+    & .nav {
+        height: $nav-height;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    
+        & .active {
+            text-decoration : underline;
+        }
+    
+        & li {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-transform: capitalize;    // 첫문자 대문자
+        }
+       
+    }
+    
+}
+

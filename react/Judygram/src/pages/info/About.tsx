@@ -2,20 +2,25 @@
  * About
  */
 
-import { useDispatch } from "react-redux";
-
-import changeNav from "@/reducers/nav";
-import { NAV_MENU } from "@/const/const.enum";
+import { NAV_MENU } from '@/const';
+import { wrapper } from "@/reducers";
+import { getNav, setNavMenu } from "@/reducers/store/nav";
+import { useSelector } from "react-redux";
 
 const About = () => {
 
-    const dispatch = useDispatch();
-
-    // dispatch( changeNav(NAV_MENU.ABOUT) );
-
+    const nav = useSelector(getNav);
+    
     return (
-        <h2>About!</h2>
+        <h2>{nav.menu}</h2>
     );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+    store.dispatch(setNavMenu(NAV_MENU.ABOUT));
+    return {
+        props : {}
+    };
+});
 
 export default About;

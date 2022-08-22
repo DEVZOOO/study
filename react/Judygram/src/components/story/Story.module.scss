@@ -1,0 +1,65 @@
+// stories
+$item-size : 60px; // 각 스토리 아이콘 사이즈(정사각형)
+$item-diff : 5px;    // 여백
+
+.storyWrap {
+    max-width: inherit;
+    width: 100%;
+
+    & .storyList {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: $item-diff * 2 $item-diff $item-diff;
+    
+        border-bottom: .5px solid #555;
+    
+        & .active {
+            text-decoration : underline;
+        }
+    
+        & li {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-transform: capitalize;    // 첫문자 대문자
+    
+            // cf) gradient + border radius
+            // background:
+            //     linear-gradient(#000, #000) padding-box,
+            //     linear-gradient(45deg, #FCBC58, #F89425, #FF1E4F, #D90894, #C80AC0) border-box,
+            //     ;
+            // border-radius: 50%;
+            // border: 4px solid transparent;
+    
+            width: $item-size;
+            margin: 0 $item-diff * 2;
+    
+            // 내부 이미지
+            & .img {
+                object-fit: cover;
+                background:
+                    linear-gradient(#000, #000) padding-box,
+                    linear-gradient(45deg, #FCBC58, #F89425, #FF1E4F, #D90894, #C80AC0) border-box,
+                    ;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                padding: 3px;
+                width: $item-size - 6px;
+                height: $item-size - 6px;
+            }
+
+            // 유저 네임
+            & span {
+                font-size: .8rem;
+                margin-top: 0.2rem;
+            }
+    
+        }
+       
+    }
+}
+
+

@@ -1,0 +1,36 @@
+
+$item-width: 300px;
+
+.loginWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & .title {
+        font-size: 2rem;
+        font-family: '맑은고딕';
+    }
+
+    & .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        margin-top: 20px;
+
+        width: $item-width;
+
+        & ul > li {
+            padding-top: 15px;
+
+            & input {
+                background-color: #333;
+                outline: 0;
+                height: 20px;
+            }
+        }
+
+    }
+}

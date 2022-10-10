@@ -1,20 +1,20 @@
 # 자료구조 Data Structure
 데이터를 저장, 구성하는데 사용되는 저장 공간   
-`A Storage that is used to store and organize data.`
+A Storage that is used to store and organize data.
 
 효율적으로 접근, 업데이트 할 수 있도록 컴퓨터상에서 데이터를 정리하는 방식  
-`A way to arranging data on computer so that it can be accessed ad updated efficiently.`
+A way to arranging data on computer so that it can be accessed ad updated efficiently.
 
 ## 선형 자료구조 Linear Data Structure
 각 요소가 순차 또는 선형적으로 정리된다.  
-  > ex) Array, Stack, Queue, Linked List, ..
+  ex) Array, Stack, Queue, Linked List, ..
 - 정적 자료구조 Static Data Structure : 고정된 메모리 공간 `Array, ...`
 - 동적 자료구조 Dynamic Data Structure : 유연한 메모리 공간    `Queue, Stack, ...`
 
 ## 비선형 자료구조 Non-linear Data Structure
 각 요소가 순차적 또는 선형적으로 위치하지 않는다.    
 단일 실행으로 모든 요소를 방문할 수 없다.    
-> ex) Tree, Graph, ...
+ex) Tree, Graph, ...
 
 
 ---
@@ -35,7 +35,7 @@ Follows a particular order in which the operation are performed.
 - 양쪽 끝이 모두 열려있고 FIFO 방식으로 수행되는 선형 데이터 구조이다.<br>
 A Linear data structure that is open at both ends and the operation performed in FIFO order.
 > FIFO 원칙
-> - First come, first served
+> - First Come, First Served
 > - 티켓팅 기다리는 라인 같은 것, 맨 처음 사람부터 서비스받는다.
 
 

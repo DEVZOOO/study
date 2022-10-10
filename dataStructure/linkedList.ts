@@ -1,7 +1,6 @@
 /**
  * Data Structure - Linked List
  */
-import search from "../react/Judygram/src/pages/search/Search";
 
 class ListNode<T> {
     data: T;

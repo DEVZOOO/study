@@ -45,3 +45,11 @@ A Linear data structure that the elements are not stored at contiguous memory lo
 - Linked List의 각 요소들은 포인터를 사용하여 연결되어 있다.
 - Linked List는 데이터 필드와 다음 요소의 주소 필드를 포함한 노드들로 구성되어 있다.<br>
 A Linked list consist of nodes which each node contains a data field and a reference(link) to the next node in the list.
+
+
+## 이진트리 Binary Tree
+- 최대 2개의 자식을 가진 트리 데이터 구조
+A Tree data structure with at most 2 children.
+- 이진트리의 각 요소는 오직 2개의 자식만을 가지므로 일반적으로 left, right 자식이라 네이밍한다.
+Since each element in a binary tree can have only 2 children, we typically name them the left and right children.
+

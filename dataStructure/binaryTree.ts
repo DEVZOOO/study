@@ -3,6 +3,9 @@
  * [참고] www.geeksforgeeks.org/binary-tree-data-structure
  */
 
+import {BFSUtil} from "../algorithm/search/bfs";
+import {Queue} from "./queue";
+
 /**
  * tree node
  */
@@ -64,25 +67,34 @@ export class BinaryTree<T> {
     Traversing an element.
     */
 
-    public insertAt() {
+    public print(): void {
+        const queue: Queue<BinaryTreeNode<T>> = new Queue();
+        queue.enQueue(this.root);
+        // BFS
+        const visited = BFSUtil<T>(queue);
 
-    }
+        visited.forEach((v, i) => {
+            // console.log(`${i == 0 ? '' : ' > '}${v}`);
+            console.log(v);
+        });
 
-
-    public print() {
-        // BFS 구현하여 출력하기.
     }
 
 }
 
 const dsBinaryTree = () => {
-    console.log("Binary Tree");
-
     const tree: BinaryTree<string> = new BinaryTree();
     const rootNode: BinaryTreeNode<string> = new BinaryTreeNode("root");
+
+    const node1: BinaryTreeNode<string> = new BinaryTreeNode("Bear");
+    const node2: BinaryTreeNode<string> = new BinaryTreeNode("Car");
+
+    rootNode.left = node1;
+    rootNode.right = node2;
+
     tree.root = rootNode;
 
-
+    tree.print();
 
 };
 

@@ -9,12 +9,12 @@ import {BinaryTree, BinaryTreeNode} from "../../dataStructure/binaryTree";
  * BFS Search
  * @param q node queue, 노드 데이터에 tree 노드
  */
-function BFSUtil(q: Queue<BinaryTreeNode<string>>) {
+export function BFSUtil<T>(q: Queue<BinaryTreeNode<T>>) {
     const visitedNode = []; // 방문한 노드 순서대로 저장
     let route = ""; // 출력 위한 변수
 
     while (q.size > 0) {
-        const firstNode: BinaryTreeNode<string> = q.deQueue().data;
+        const firstNode: BinaryTreeNode<T> = q.deQueue().data;
 
         route += `${route.length > 0 ? ' > ' : ''}${firstNode.data}`;
 

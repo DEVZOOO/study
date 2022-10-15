@@ -3,8 +3,8 @@
  * [참고] www.geeksforgeeks.org/binary-tree-data-structure
  */
 
-import {BFSUtil} from "../algorithm/search/bfs";
-import {Queue} from "./queue";
+import { BFSUtil } from "../algorithm/search/bfs";
+import { Queue } from "./queue";
 
 /**
  * tree node

@@ -5,7 +5,7 @@
 /**
  * Queue Node
  */
-class QueueNode<T> {
+export class QueueNode<T> {
     data: T;
     next?: QueueNode<T>;
 }
@@ -13,10 +13,30 @@ class QueueNode<T> {
 /**
  * Queue
  */
-class Queue<T> {
+export class Queue<T> {
     private _size: number = 0;  // 큐 사이즈
     private _front: QueueNode<T>;  // 첫번째 요소, front
     private _rear: QueueNode<T>;  // 마지막 요소, tail
+
+
+    // getter, setter
+    get front() {
+        return this._front;
+    }
+    set front(f) {
+        this._front = f;
+    }
+
+    get rear() {
+        return this._rear;
+    }
+    set rear(r) {
+        this._rear = r;
+    }
+
+    get size() {
+        return this._size;
+    }
 
     /**
      * 요소 추가
@@ -39,13 +59,20 @@ class Queue<T> {
     /**
      * 요소 삭제
      */
-    public deQueue(): void {
+    public deQueue(isReturn: boolean = true): QueueNode<T> {
+        let node = this._front;
         // 한개일 경우
         if (this._size == 1 && this._front.data == this._rear.data) {
+            node = this._rear;
             this._rear = undefined;
         }
+
         this._front = this._front.next;
         this._size -= 1;
+
+        if (isReturn) {
+            return node;
+        }
     }
 
     /**

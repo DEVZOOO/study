@@ -71,7 +71,7 @@ export class BinaryTree<T> {
         const queue: Queue<BinaryTreeNode<T>> = new Queue();
         queue.enQueue(this.root);
         // BFS
-        const visited = BFSUtil<T>(queue);
+        const visited = BFSUtil<T>(queue, false);
 
         visited.forEach((v, i) => {
             // console.log(`${i == 0 ? '' : ' > '}${v}`);

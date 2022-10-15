@@ -8,8 +8,9 @@ import {BinaryTree, BinaryTreeNode} from "../../dataStructure/binaryTree";
 /**
  * BFS Search
  * @param q node queue, 노드 데이터에 tree 노드
+ * @param printInner 메소드 내에서 출력할지
  */
-export function BFSUtil<T>(q: Queue<BinaryTreeNode<T>>) {
+export function BFSUtil<T>(q: Queue<BinaryTreeNode<T>>, printInner = false) {
     const visitedNode = []; // 방문한 노드 순서대로 저장
     let route = ""; // 출력 위한 변수
 
@@ -33,7 +34,7 @@ export function BFSUtil<T>(q: Queue<BinaryTreeNode<T>>) {
 
     }
 
-    console.log(route);
+    printInner && console.log(route);
     
     return visitedNode;
 

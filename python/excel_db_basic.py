@@ -128,6 +128,7 @@ def main():
     진입함수
     """
 
+    dbms = Dbms.ORACLE if int(input("DBMS(1:Oracle, 2:MySQL) > ")) == 1 else Dbms.MYSQL
     schema = input("스키마 입력 > ")
     file_name = input("저장할 파일명 > ")
 
@@ -140,25 +141,29 @@ def main():
         conn = None
 
         # 1. DB 연결
-        # conn = cx_Oracle.connect(
-        #     DbConfig.USER,
-        #     DbConfig.PASSWORD,
-        #     f"{DbConfig.HOST}:{DbConfig.PORT}/{DbConfig.DATABASE}",
-        # )
-        conn = pymysql.connect(
-            host=DbConfig.HOST,
-            port=DbConfig.PORT,
-            user=DbConfig.USER,
-            password=DbConfig.PASSWORD,
-            database=DbConfig.DATABASE,
-            charset=DbConfig.CHARSET,
-            cursorclass=pymysql.cursors.DictCursor,
-        )
+        if dbms == Dbms.ORACLE:
+            conn = cx_Oracle.connect(
+                DbConfig.USER,
+                DbConfig.PASSWORD,
+                f"{DbConfig.HOST}:{DbConfig.PORT}/{DbConfig.DATABASE}",
+            )
+        else:
+            conn = pymysql.connect(
+                host=DbConfig.HOST,
+                port=DbConfig.PORT,
+                user=DbConfig.USER,
+                password=DbConfig.PASSWORD,
+                database=DbConfig.DATABASE,
+                charset=DbConfig.CHARSET,
+                cursorclass=pymysql.cursors.DictCursor,
+            )
 
         with conn.cursor() as cursor:
             # 2. 실행
-            # exec_oracle(cursor=cursor, schema=schema, file_name=file_name)
-            exec_mysql(cursor=cursor, schema=schema, file_name=file_name)
+            if dbms == Dbms.ORACLE:
+                exec_oracle(cursor=cursor, schema=schema, file_name=file_name)
+            else:
+                exec_mysql(cursor=cursor, schema=schema, file_name=file_name)
 
     except Exception as e:
         print(f"## FAIL TO SAVE FILE :: {e}")

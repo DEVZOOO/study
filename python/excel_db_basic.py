@@ -9,7 +9,8 @@ from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.styles import Font, PatternFill, Alignment, NamedStyle, Border, Side
 
 import traceback
-from typing import List, Dict, Optional, Literal
+from typing import List, Dict, Optional, Literal, Any
+from enum import Enum
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -31,9 +32,89 @@ class DbConfig:
     DATABASE = "db"
     CHARSET = "utf8mb4"  # MySQL
 
+class Dbms(Enum):
+    """
+    DBMS 종류
+    """
+
+    ORACLE = "ORACLE"
+    MYSQL = "MYSQL"
+
 
 # ======== oracle client 경로 설정 ========
 os.environ["PATH"] = Constant.LOCATION + ";" + os.environ["PATH"]
+
+# ======== DB 정보 DTO ========
+@dataclass
+class TableInfo:
+    """
+    테이블 정보
+
+    Attributes:
+        owner (str): 소유자, user
+        table_name (str): 테이블명
+        tablespace_name (Optional[str]): 테이블스페이스
+        comment (Optional[str]): 테이블 설명명
+    """
+
+    owner: str
+    table_name: str
+    tablespace_name: Optional[str]
+    comment: Optional[str]
+
+    def __init__(self, table_info: Dict[str, Any], dbms: Dbms):
+        if dbms == Dbms.ORACLE:
+            self.owner = table_info["OWNER"]
+            self.table_name = table_info["TABLE_NAME"]
+            self.tablespace_name = table_info["TABLESPACE_NAME"]
+            self.comment = table_info["COMMENTS"]
+        elif dbms == Dbms.MYSQL:
+            self.owner = table_info["TABLE_SCHEMA"].upper()
+            self.table_name = table_info["TABLE_NAME"].upper()
+            self.tablespace_name = None
+            self.comment = table_info["TABLE_COMMENT"]
+
+
+@dataclass
+class ColumnInfo:
+    """
+    컬럼 정보
+
+    Attributes:
+        column_name (str): 컬럼명
+        data_type (str): 컬럼타입
+        data_length (Optional[int]): 데이터 길이
+        nullable (Literal["Y", "N"]): NULL 허용 여부
+        key_type (Optional[str]): PK, FK, IDX
+        data_default (Optional[str]): 기본값
+        comment (Optional[str]): 설명
+    """
+
+    column_name: str
+    data_type: str
+    data_length: Optional[int]
+    nullable: Literal["Y", "N"]
+    key_type: Optional[str]
+    data_default: Optional[str]
+    comment: Optional[str]
+
+    def __init__(self, row: Dict[str, Any], dbms: Dbms):
+        if dbms == Dbms.ORACLE:
+            self.column_name = row["COLUMN_NAME"]
+            self.data_type = row["DATA_TYPE"]
+            self.data_length = row["DATA_LENGTH"]
+            self.nullable = row["NULLABLE"]
+            self.key_type = row["KEY_TYPE"]
+            self.data_default = row["DATA_DEFAULT"]
+            self.comment = row["COL_COMMENTS"]
+        elif dbms == Dbms.MYSQL:
+            self.column_name = row["Field"].upper()
+            self.data_type = row["Type"].upper()
+            self.data_length = None
+            self.nullable = "Y" if row["Null"] == "YES" else "N"
+            self.key_type = row["Key"]
+            self.data_default = row["Default"]
+            self.comment = row["Comment"]
 
 
 def main():
@@ -107,7 +188,7 @@ def exec_oracle(
     tables = cursor.fetchall()
 
     for t in tables:
-        t = t[0]
+        t = t["TABLE_NAME"]
 
         # 테이블 정보 조회
         sql = f"""
@@ -134,7 +215,12 @@ def exec_oracle(
         cursor.execute(sql)
         column_list = cursor.fetchall()
 
-        write_excel(sheet=sheet, table_info=table_info, column_list=column_list)
+        write_excel(
+            sheet=sheet,
+            table_info=TableInfo(table_info, Dbms.ORACLE),
+            column_list=column_list,
+            dbms=Dbms.ORACLE,
+        )
 
     wb.save(f"{file_name}.xlsx")
 
@@ -184,13 +270,18 @@ def exec_mysql(
         cursor.execute(sql)
         column_list = cursor.fetchall()
 
-        write_excel(sheet=sheet, table_info=table_info, column_list=column_list)
+        write_excel(
+            sheet=sheet,
+            table_info=TableInfo(table_info, Dbms.MYSQL),
+            column_list=column_list,
+            dbms=Dbms.MYSQL,
+        )
 
     wb.save(f"{file_name}.xlsx")
 
 
 # ============= Excel 관련 START =============
-def write_excel(sheet: Worksheet, table_info, column_list: List):
+def write_excel(sheet: Worksheet, table_info, column_list: List, dbms: Dbms):
     """
     엑셀에 데이터 입력
     """
@@ -202,9 +293,9 @@ def write_excel(sheet: Worksheet, table_info, column_list: List):
     sheet.append(
         [
             "테이블명",
-            table_info["TABLE_NAME"],
+            table_info.table_name,
             "테이블스키마",
-            table_info["TABLE_SCHEMA"],
+            table_info.owner,
         ]
     )
 
@@ -215,26 +306,19 @@ def write_excel(sheet: Worksheet, table_info, column_list: List):
     i = 0
     for c in column_list:
         i += 1
-        # 각 DBMS 조회값에 맞는 key로 접근하세요
+        # DTO 변환
+        column_info = ColumnInfo(c, dbms)
+
         sheet.append(
             [
                 i,
-                # Oracle
-                # c["COLUMN_NAME"],
-                # c["COL_COMMENTS"],
-                # c["DATA_TYPE"],
-                # c["DATA_LENGTH"],
-                # c["NULLABLE"],
-                # c["KEY_TYPE"],
-                # c["DATA_DEFAULT"],
-                # MySQL
-                c["Field"],
-                c["Comment"],
-                c["Type"],
-                "",
-                c["Null"],
-                c["Key"],
-                c["Default"],
+                column_info.column_name,
+                column_info.comment,
+                column_info.data_type,
+                column_info.data_length,
+                column_info.nullable,
+                column_info.key_type,
+                column_info.data_default,
             ]
         )
 

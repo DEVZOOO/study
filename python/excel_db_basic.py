@@ -14,10 +14,16 @@ from enum import Enum
 from dataclasses import dataclass
 from datetime import datetime
 
+# Slack message 위한 request
+# pip install requests
+import requests
+
 
 class Constant:
     # oracle client 경로
     LOCATION = r"C:\\...\\instantclient_23_6"
+    # Slack url
+    SLACK_WEB_HOOK_URL = "https://hooks.slack.com/services/xxx/yyy/zzz..."
 
 
 class DbConfig:
@@ -128,6 +134,7 @@ def main():
     format = "%Y-%m-%d %H:%M:%S"
 
     print(f"----------- [{datetime.now().strftime(format)}] START TO SAVE EXCEL FILE")
+    send_slack_msg("Start to save excel file")
 
     try:
         conn = None
@@ -155,11 +162,14 @@ def main():
 
     except Exception as e:
         print(f"## FAIL TO SAVE FILE :: {e}")
+        send_slack_msg("❌FAIL TO SAVE FILE")
         traceback.print_exc()
     else:
         print(f"💚 SUCCESS TO SAVE FILE!")
+        send_slack_msg("💚 SUCCESS TO SAVE FILE!")
 
     print(f"----------- [{datetime.now().strftime(format)}] FINISH TO SAVE EXCEL FILE")
+    send_slack_msg("Finish to save excel file")
 
 
 def exec_oracle(
@@ -321,6 +331,30 @@ def write_excel(sheet: Worksheet, table_info, column_list: List, dbms: Dbms):
                 column_info.data_default,
             ]
         )
+
+# ============= Excel 관련 END =============
+
+def send_slack_msg(msg: str):
+    """
+    Slack 메시지 전송
+
+    Arguments:
+        msg (str): 보낼 메시지
+    """
+
+    format = "%Y-%m-%d %H:%M:%S"
+
+    headers = {"Content-Type": "application/json"}
+    data = {
+        "text": f"[Excel_DB] {msg}",
+    }
+
+    res = requests.post(Constant.SLACK_WEB_HOOK_URL, json=data, headers=headers)
+
+    if res.status_code == 200:
+        print(f"[{datetime.now().strftime(format)}] ✅Success to send slack message.")
+    else:
+        print(f"[{datetime.now().strftime(format)}] ❌Fail to send slack message.")
 
 
 main()
